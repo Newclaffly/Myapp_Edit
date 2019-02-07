@@ -25,12 +25,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/ok" android:onClick="clickOK"/>
         <Button
-                android:text="About"
+                android:text="About Me"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/gotoabout" android:onClick="gotoaboutme"/>
-        <Button
-                android:text="Edit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/edit" android:onClick="gotoedit"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

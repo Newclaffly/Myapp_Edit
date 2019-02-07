@@ -12,24 +12,30 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class Edit_Activity : AppCompatActivity() {
-    private var textview: TextView? = null
-    private var edit: EditText? = null
-    private var firstname: EditText? = null
-    private var lastname: EditText? = null
-    private var id: EditText? = null
-    private var address: EditText? = null
-    private var job: EditText? = null
+    private val REQUEST_MAIN = 11
+    private var editfirst: TextView? = null
+    private var editlast: TextView? = null
+    private var editid: TextView? = null
+    private var editaddress: TextView? = null
+    private var editjob: TextView? = null
     private var btnsubmit: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_)
-        edit = findViewById(R.id.firstname) as EditText
-        firstname = findViewById(R.id.firstname) as EditText
-        lastname = findViewById(R.id.lastname) as EditText
-        id = findViewById(R.id.id) as EditText
-        address = findViewById(R.id.address) as EditText
-        job = findViewById(R.id.job) as EditText
+        var intent = getIntent()
+        editfirst = findViewById(R.id.editfirst) as EditText
+        editlast = findViewById(R.id.editlast) as EditText
+        editid = findViewById(R.id.editid) as EditText
+        editaddress = findViewById(R.id.editaddress) as EditText
+        editjob = findViewById(R.id.editjob) as EditText
+        //echo
+        editfirst!!.text = intent.getStringExtra("first")
+        editlast!!.text = intent.getStringExtra("last")
+        editid!!.text = intent.getStringExtra("id")
+        editaddress!!.text = intent.getStringExtra("add")
+        editjob!!.text = intent.getStringExtra("job")
+
         btnsubmit = findViewById(R.id.submit) as Button
 
         var textWatcher = object : TextWatcher {
@@ -42,27 +48,29 @@ class Edit_Activity : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                btnsubmit!!.isEnabled = if (edit!!.toString().length > 0) {
+                btnsubmit!!.isEnabled = if (editfirst!!.toString().length > 0) {
                     true
                 } else {
                     false
                 }
             }//end if
         }// end Watcher
-        edit!!.addTextChangedListener(textWatcher)
-        btnsubmit!!.isEnabled = false
+        editfirst!!.addTextChangedListener(textWatcher)
+        btnsubmit!!.isEnabled = true
     }//end oncreate
+
 
     fun gotoabout(view: View) {
         var intent = Intent(this, Aboutme_Activity::class.java)
-        intent.putExtra("firstname", firstname!!.text.toString())
-        intent.putExtra("lastname", lastname!!.text.toString())
-        intent.putExtra("id", id!!.text.toString())
-        intent.putExtra("address", address!!.text.toString())
-        intent.putExtra("job", job!!.text.toString())
+////        intent.putExtra("firstname", firstname!!.text.toString())
+////        intent.putExtra("lastname", lastname!!.text.toString())
+////        intent.putExtra("id", id!!.text.toString())
+////        intent.putExtra("address", address!!.text.toString())
+////        intent.putExtra("job", job!!.text.toString())
         startActivity(intent)
     }
-    fun backtoabout(view:View){
+
+    fun backtoabout(view: View) {
         finish()
     }
 }//end class

@@ -50,10 +50,6 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra("val", name!!.text.toString())
         startActivity(intent)
     }
-    fun gotoedit(view:View){
-        var intent = Intent(this,Edit_Activity::class.java)
-        startActivity(intent)
-    }
 
 
 }//end class
